@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des employées : Modele MVC avec le Template Spring: Thymeleaf</title>
+</head>
+<body>
+<h2 class="h2">Liste des employées</h2>
+<a th:href="@{/addEmployeeForm}">Ajouter un employé</a>
+<table>
+    <thead>
+    <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${employees.empty}">
+        <td colspan="3">Aucun employé en base de données</td>
+    </tr>
+    <tr th:each="employee: ${employees}">
+        <td><span th:text="${employee.firstName}"> Prénom </span></td>
+        <td><span th:text="${employee.lastName}"> Nom </span></td>
+        <td><a th:href="@{'/detailsEmployee/' + ${employee.id}}">Détails</a> </td>
+        <td>
+            <form th:action="@{'/deleteEmployee/' + ${employee.id}}" th:method="post" th:object="${employee}">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+Abdel: This is a test
+</body>
+</html>

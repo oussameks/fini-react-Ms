@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de l'employé : Modele MVC avec le Template Spring: Thymeleaf</title>
+</head>
+<body>
+<h2 class="h2">Détails de l'employé</h2>
+
+<div th:if="${employee != null}">
+    <p><strong>Prénom:</strong> <span th:text="${employee.firstName}"></span></p>
+    <p><strong>Nom:</strong> <span th:text="${employee.lastName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${employee.mail}"></span></p>
+
+    <!-- Add other details as needed -->
+
+    <!-- You can add more details here as needed -->
+</div>
+
+<div th:if="${employee == null}">
+    <p>Aucun employé trouvé avec cet ID.</p>
+</div>
+
+<!-- Add the link to updateEmployeeForm here -->
+<a th:href="@{'/updateEmployeeForm/' + ${employee.id}}">Modifier cet employé</a>
+<a th:href="@{/}">Retour à la liste des employés</a>
+</body>
+</html>
